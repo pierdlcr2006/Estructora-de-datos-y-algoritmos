@@ -69,78 +69,149 @@ Dependency Matplotlib
 
 Se debe realizar los ejercicios planteados y un gráfico del tiempo de procesamiento versus los valores de n.
 
-1. **Logarithmic complexity - O(log n)**
+**Funciones que nos permiten realizar medir el tiempo, visualizar la gráfica y ejecutar el algoritmo:**
 
-    **Total time = O(logn)**
+```python
+def measure_time(func, n):
+    """Measures execution time of a function"""
+    start_time = time.time()
+    func(n)
+    end_time = time.time()
+    return end_time - start_time
+
+
+def plot_times(n_values, times, title):
+    """Plots execution times"""
+    plt.plot(n_values, times, 'o-')
+    plt.title(title)
+    plt.xlabel('Input Size (n)')
+    plt.ylabel('Time (seconds)')
+    plt.grid(True)
+    plt.show()
+
+
+def run_algorithm(algorithm_func, n_values, title):
+    """Runs algorithm and measures execution time for different n values"""
+    times = []
+
+    for n in n_values:
+        time_taken = measure_time(algorithm_func, n)
+        times.append(time_taken)
+        print(f"n = {n}, time = {time_taken:.8f} seconds")
+
+    plot_times(n_values, times, title)
+
+```
+
+1. **Logarithmic complexity - O(log n)**
 
     Calcular el tiempo de procesamiento para un condicional con un bucle simple, los valores de n serán : 1,10, 100, 1000, 10000 , 100000, 1000000.
 
 ```python
 
-  
+   import time
+import matplotlib.pyplot as plt
 
+def measure_time(func, n):
+    """Measure the execution time of a function with input n."""
+    start_time = time.time()
+    func(n)
+    return time.time() - start_time
 
+def plot_times(n_values, times, title):
+    """Plot execution times against input sizes."""
+    plt.figure(figsize=(8, 5))
+    plt.plot(n_values, times, marker='o', linestyle='-', color='b', label='Tiempo de ejecución (s)')
+    plt.xscale('log')  # Set logarithmic scale for better visualization
+    plt.xlabel('Tamaño de entrada (n)')
+    plt.ylabel('Tiempo de ejecución (s)')
+    plt.title(title)
+    plt.legend()
+    plt.grid(True, which="both", linestyle="--", linewidth=0.5)
+    plt.show()
+
+def run_algorithm(algorithm_func, n_values, title):
+    """Run algorithm and measure execution time for different n values."""
+    times = [measure_time(algorithm_func, n) for n in n_values]
+
+    # Print results in a formatted way
+    for n, t in zip(n_values, times):
+        print(f"n = {n:7}, tiempo = {t:.8e} segundos")
+
+    plot_times(n_values, times, title)
+
+def logarithmic_algorithm(n):
+    """Algorithm with O(log n) complexity (binary reduction)."""
+    while n > 0:
+        n //= 2  # Integer division by 2 to simulate logarithmic complexity
+
+# Define input sizes
+n_values = [1, 10, 100, 1000, 10000, 100000, 1000000]
+
+# Run and visualize the algorithm
+run_algorithm(logarithmic_algorithm, n_values, "Complejidad Logarítmica - O(log n)")
 
 
 ```
 
 2. **Simple Loop - O(n)**
 
-    **Total time = O(logn)**
-
     Calcular el tiempo de procesamiento para un bucle simple, los valores de n serán: 10^2, 10^3, 10^4, 10^5 y 10^6.
 
 ```python
 
-  
-
-
-  
+  def simple_loop(n):
+    """Algorithm with O(n) complexity"""
+    for _ in range(n):
+        pass
 
 ```
 
 3. **If-then-else statements - O(n)**
 
-    **Total time = O(logn)**
-
     Calcular el tiempo de procesamiento para un condicional con un bucle simple, los valores de n serán: 1, 10, 100, 1000, 10000, 100000.
 
 ```python
 
-  
-
-
-  
+    def if_then_else(n):
+    """Algorithm with conditional O(n) complexity"""
+    if n % 2 == 0:
+        for _ in range(n):
+            pass
+    else:
+        for _ in range(n):
+            pass
 
 ```
 
 4. **Nested Loops - O(n²)**
 
-    **Total time = O(logn)**
-
     Calcular el tiempo de procesamiento para un bucle anidado de nivel 2, los valores de n serán: 100, 400, 600, 800, 1000, 1100.
 
 ```python
 
-  
-
-
-  
+    def nested_loops(n):
+    """Algorithm with O(n²) complexity"""
+    for _ in range(n):
+        for _ in range(n):
+            pass
 
 ```
 
 5. **Nested Loops - O(n²)**
 
-    **Total time = O(logn)**
-
     Calcular el tiempo de procesamiento para un bucle simple unido a un bucle anidado de nivel 2, los valores de n serán: 100, 400, 600, 800, 1000, 1100.
 
 ```python
 
-  
+    def consecutive_statements(n):
+    """Algorithm with O(n + n²) complexity"""
+    for _ in range(n):
+        pass
 
-
-  
+    for _ in range(n):
+        for _ in range(n):
+            pass
 
 ```
 
