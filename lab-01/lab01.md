@@ -1,84 +1,67 @@
-# Lab 01: Algorithm Complexity Analysis
+<!-- ![](../img/tecsupLogo.png) -->
+<p align="center">
+<img src="../img/tecsupLogo.png" align="center"> 
+</p>
 
-This laboratory explores different algorithm complexities and measures their execution times.
+# Algoritmos y Estructuras de Datos
 
-## Contents
+## Lab01: Introducction to algorithm design
 
-- `main.py`: Python script implementing algorithms with different time complexities
+## Capacidades
 
-## Requirements
+- Identificar las importancia de los algoritmos en programación
 
-- Python 3.x
-- Matplotlib library (`pip install matplotlib`)
+## Seguridad
 
-## Usage
+- Generar un ambiente seguro
+- Evitar el consumo de alimentos
+- Dejar el ambiente ordenado y limpio
 
-1. Install the required dependencies:
-   ```
-   pip install matplotlib
-   ```
+## Preparación
 
-2. Run the script and uncomment the algorithm you want to analyze:
-   ```
-   python main.py
-   ```
+- El alumno debe revisar previamente el material cargado
 
-## Implemented Algorithms
+## Recursos
 
-1. **Logarithmic complexity - O(log n)**
-   - Algorithm divides n by 2 repeatedly until reaching 0
-   - Tested with n values: 1, 10, 100, 1000, 10000, 100000, 1000000
+- Computadora
 
-2. **Simple Loop - O(n)**
-   - Algorithm with a single loop executing n times
-   - Tested with n values: 10^2, 10^3, 10^4, 10^5, 10^6
+## Instrucciones
 
-3. **If-then-else statements - O(n)**
-   - Algorithm with conditional branches, both containing linear operations
-   - Tested with n values: 1, 10, 100, 1000, 10000, 100000
+Cada integrante del grupo debe seleccionar un ejercicio diferente y desarrollarlo con la siguiente estructura.
 
-4. **Nested Loops - O(n²)**
-   - Algorithm with two nested loops, each executing n times
-   - Tested with n values: 100, 400, 600, 800, 1000, 1100
+- **Nombre del alumno**
+- **Ejercicio a desarrollar**
+- **Prompt engineering**
 
-5. **Consecutive statements - O(n + n²) = O(n²)**
-   - Algorithm combining a simple loop and nested loops
-   - Tested with n values: 100, 400, 600, 800, 1000, 1100
+    - Prompt ingresado y captura
+    - Análisis del prompt
+    - Ajustes de prompt y captura
+    - Comentarios de los compañeros
 
-6. **Mystery Algorithms**
-   - Three algorithms with unknown complexity to be analyzed
+- **Código**
+    - Código desarrollado
+    - Análisis del código
+    - Comentarios de los compañeros
 
-## Analysis Process
+Desarrollar todo el código en inglés
 
-For each algorithm:
-1. Execution time is measured for different input sizes
-2. Results are plotted to visualize how execution time scales with input size
-3. Theoretical complexity is compared with the observed performance
+## Algoritmos y Estructura de Datos 
 
-## Student Information
+Dependency Matplotlib
 
-- **Name:** Elliot Leo Garamendi Sarmiento
-- **Course:** Algorithms and Data Structures
-
-## Prompt Engineering (Example for one algorithm)
-
-### Prompt Entered
-```
-Implement an algorithm with logarithmic time complexity O(log n) that divides n by 2 repeatedly until reaching 0. Measure its execution time with n values: 1, 10, 100, 1000, 10000, 100000, 1000000.
+```python
+  pip install matplotlib
 ```
 
-### Prompt Analysis
-The original prompt was specific about the algorithm's implementation but didn't include details about visualization or analysis.
+```python
 
-### Improved Prompt
+  import matplotlib.pyplot as plt
+  data = {10:0.3, 100:0,5 ,1000:0.8}
+  plt.scatter(x=data.keys(), y=data.values() , color="Red")
+  plt.tittle('Loops')  
+  plt.xlabel('Iteractions')
+  plt.ylabel('Time(s)')
+  plt.show()
+
 ```
-Implement a logarithmic algorithm O(log n) that divides n by 2 repeatedly. Measure its execution time with n values from 1 to 1,000,000, visualize the results, and analyze how the execution time scales in relation to the input size.
-```
 
-## Conclusions
-
-1. The empirical results confirm the theoretical time complexity for each algorithm.
-2. Logarithmic algorithms show excellent performance even with very large inputs.
-3. Quadratic algorithms quickly become impractical as input size grows.
-4. The choice of algorithm significantly impacts performance, especially for large datasets.
-5. Understanding algorithm complexity is crucial for developing efficient software solutions.
