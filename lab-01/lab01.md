@@ -213,6 +213,7 @@ run_algorithm(logarithmic_algorithm, n_values, "Complejidad Logarítmica - O(log
             pass
 
 ```
+![](../img/lab01/ejer3.png)
 
 4. **Nested Loops - O(n²)**
 
