@@ -184,15 +184,64 @@ run_algorithm(logarithmic_algorithm, n_values, "Complejidad Logarítmica - O(log
 
 
 2. **Simple Loop - O(n)**
+    **Luis Miguel Toledo**
 
     Calcular el tiempo de procesamiento para un bucle simple, los valores de n serán: 10^2, 10^3, 10^4, 10^5 y 10^6.
 
+    Prompt Engineering
+
+    **Prompt Entered and Screenshot:**
+    Write a Python script to measure the execution time of a loop for different loop sizes (10² to 10⁶) and visualize the results using matplotlib.
+
+    **Prompt Analysis:**
+    The prompt clearly specifies the task: measuring execution time and visualizing it. It defines the loop sizes and the libraries to use (timeit and matplotlib). The focus is on understanding the relationship between loop size and processing time.
+
+    **Prompt Adjustments and Screenshot:**
+    To improve the visualization of data with large ranges, the prompt was updated to include the use of a logarithmic scale. This will provide a clearer understanding of how the processing time scales with increasing loop sizes.
+
+    **Updated prompt:**
+    Write a Python script to measure the execution time of a loop for different loop sizes (10² to 10⁶) and plot the results using matplotlib, with a logarithmic scale for both axes.
+
+    ****Comments from colleagues****
+    - Chuco
+  
+    - De la Cruz 
+
 ```python
 
-  def simple_loop(n):
-    """Algorithm with O(n) complexity"""
-    for _ in range(n):
-        pass
+    from timeit import default_timer as timer
+    import matplotlib.pyplot as plt
+
+    # List of n values
+    n_values = [10**2, 10**3, 10**4, 10**5, 10**6]
+    times = []
+
+    # Measure processing time for each value of n
+    for n in n_values:
+        start = timer()
+        
+        # Simple loop
+        for i in range(n):
+            pass  # Empty loop to measure only time for iteration
+
+        end = timer()
+        proc_time = end - start
+        times.append(proc_time)
+        print(f"Processing time for n = {n}: {proc_time} seconds")
+
+    # Plotting the results
+    plt.figure(figsize=(10, 6))
+    plt.plot(n_values, times, marker='o', linestyle='-', color='b')
+    plt.title('Processing Time vs Size of n')
+    plt.xlabel('Size of n')
+    plt.ylabel('Processing Time (seconds)')
+    plt.xscale('log')  # Logarithmic scale for n
+    plt.yscale('log')  # Logarithmic scale for time
+    plt.grid(True)
+
+    # Show plot
+    plt.show()
+
 
 ```
 
