@@ -305,40 +305,28 @@ run_algorithm(logarithmic_algorithm, n_values, "Complejidad Logarítmica - O(log
 
 1. Algoritmo 1: n =  1, 10, 100, 1000, 10000
 
-```python
+   - It increases in powers of 10: 10^0, 10^1, 10^2, 10^3, 10^4.
 
-  
-
-
-  
-
-```
+   - It can be related to exponential or log-order 𝑂(log 𝑛) complexity analysis algorithms in specific bases.
 
 2. Algoritmo 2: n=  1, 10, 100, 1000 
 
-```python
+   - It increases in powers of 10: 10^0, 10^1, 10^2, 10^3.
 
-  
-
-
-  
-
-```
+   - It can be related to exponential or log-order 𝑂(log 𝑛) complexity analysis algorithms in specific bases.
 
 3. Algoritmo 3: n = 1,5,10,50,100,500,1000,5000,10000,50000,100000
 
-```python
+    - Here the growth is not uniform, but follows a progressively increasing pattern with some base 5 and 10 jumps.
 
-  
+   - It could represent test points in analysis of algorithms of order 𝑂(𝑛),𝑂(𝑛 log 𝑛), or even binary search in certain implementations.
 
 
-  
-
-```
 
 **Propuesta de algoritmo**
 
 Proponer un algoritmo que resuelva problema e iterar para que mejore.
+
 ***Algorithm for adding natural numbers***
 - Initial Algorithm
   
