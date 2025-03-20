@@ -258,6 +258,27 @@ run_algorithm(logarithmic_algorithm, n_values, "Complejidad Logarítmica - O(log
 3. **If-then-else statements - O(n)** ***Piero De La Cruz***
 
     Calcular el tiempo de procesamiento para un condicional con un bucle simple, los valores de n serán: 1, 10, 100, 1000, 10000, 100000.
+   
+    **Original Prompt***
+   
+    Generate a Python function that measures the execution time of an O(n) algorithm. It should be tested with a list of n values: [1, 10, 100, 1000, 10000, 100000]. It uses an external function run_algorithm from a module called functions to measure
+    the execution time. It plots the results in a graph using matplotlib to visualize the growth of time complexity as a function of n.
+    
+    **Prompt Analysis**
+   
+    The code follows the purpose of the prompt:
+   
+    -    Measures execution times using measure_time(func, n).
+    -    Runs an O(n) algorithm (if_then_else(n)).
+    -    Uses run_algorithm to test multiple values ​​of n.
+    -    Plots the times in a graph using matplotlib.
+    -    However, the prompt does not clearly specify the structure of the algorithm, which could raise questions about its implementation.
+    
+    **Prompt Tweaks and Improvements**
+    To improve the prompt, the function to be evaluated could be more clearly explained and the accuracy of the time measurement using time.perf_counter() could be improved.
+    
+    Improved Prompt
+    Generates a Python function that measures the execution time of an algorithm with O(n) complexity. The evaluated function should perform a loop of n iterations without performing any additional operations. Test the function with a list of n values:      [1, 10, 100, 1000, 10000, 100000]. Use an external function run_algorithm from a module called functions to measure the execution time. Plot the results in a graph using matplotlib to visualize the increase in time complexity as a function of n.
 
 ```python
 
