@@ -248,7 +248,7 @@ run_algorithm(logarithmic_algorithm, n_values, "Complejidad Logarítmica - O(log
 
 ```
 
-3. **If-then-else statements - O(n)**
+3. **If-then-else statements - O(n)** ***Piero De La Cruz***
 
     Calcular el tiempo de procesamiento para un condicional con un bucle simple, los valores de n serán: 1, 10, 100, 1000, 10000, 100000.
 
@@ -262,6 +262,9 @@ run_algorithm(logarithmic_algorithm, n_values, "Complejidad Logarítmica - O(log
     else:
         for _ in range(n):
             pass
+
+    log_condt= [1,10,100,1000,10000,100000]
+    run_algorithm(if_then_else,log_condt,'Linear Complexity')
 
 ```
 ![](../img/lab01/ejer3.png)
