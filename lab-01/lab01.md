@@ -176,7 +176,8 @@ run_algorithm(logarithmic_algorithm, n_values, "Complejidad Logarítmica - O(log
 
 
 ```
-***data***
+***Data***
+
 ![](../img/lab01/image.png)
 
 
@@ -335,15 +336,36 @@ run_algorithm(logarithmic_algorithm, n_values, "Complejidad Logarítmica - O(log
 **Propuesta de algoritmo**
 
 Proponer un algoritmo que resuelva problema e iterar para que mejore.
+***Algorithm for adding natural numbers***
+- Initial Algorithm
+  
+The initial algorithm simply adds the numbers from 1 to n using a for loop.
+```python
+def sum_natural_numbers(n):
+    """Suma los primeros n números naturales."""
+    total = 0
+    for i in range(1, n + 1):
+        total += i
+    return total
+
+# Ejemplo de uso
+n = 100
+print(f"La suma de los primeros {n} números naturales es: {sum_natural_numbers(n)}")
+```
+- Algorithm Improvement
+  
+We can improve this algorithm by using a mathematical formula to calculate the sum of the first n natural numbers, which reduces the time complexity from O(n) to O(1).
 
 ```python
+def sum_natural_numbers_optimized(n):
+    """Suma los primeros n números naturales utilizando una fórmula matemática."""
+    return n * (n + 1) // 2
 
-  
-
-
-  
-
+# Ejemplo de uso
+n = 100
+print(f"La suma de los primeros {n} números naturales es: {sum_natural_numbers_optimized(n)}")
 ```
+
 
 ## Conclusiones
 1. 
