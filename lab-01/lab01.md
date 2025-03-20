@@ -177,13 +177,16 @@ run_algorithm(logarithmic_algorithm, n_values, "Complejidad Logarítmica - O(log
 
 ```
 ***data***
-<img src="../img/lab01/image.png" align="center"> 
+![](../img/lab01/image.png)
+
+
 ***Graph***
 
-<img src="../img/lab01/grafica01.png" align="center"> 
+![](../img/lab01/grafica01.png)
 
 
-2. **Simple Loop - O(n)**
+
+1. **Simple Loop - O(n)**
     **Luis Miguel Toledo**
 
     Calcular el tiempo de procesamiento para un bucle simple, los valores de n serán: 10^2, 10^3, 10^4, 10^5 y 10^6.
