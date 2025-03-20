@@ -206,9 +206,9 @@ run_algorithm(logarithmic_algorithm, n_values, "Complejidad Logarítmica - O(log
     Write a Python script to measure the execution time of a loop for different loop sizes (10² to 10⁶) and plot the results using matplotlib, with a logarithmic scale for both axes.
 
     ****Comments from colleagues****
-    - Chuco
-  
-    - De la Cruz 
+    **Chuco:** The inclusion of the logarithmic scale greatly enhanced the clarity of the plot, particularly for the larger loop sizes. It made it easier to observe how the processing time increases more gradually with smaller loop sizes and more significantly with larger ones.
+
+    **De la Cruz:** Teammates also emphasized that the logarithmic scale helped distinguish the differences in processing times for the larger values of n. Without this scale, the variations in times for larger values could have appeared less noticeable, limiting the interpretability of the data.
 
 ```python
 
@@ -247,6 +247,14 @@ run_algorithm(logarithmic_algorithm, n_values, "Complejidad Logarítmica - O(log
 
 
 ```
+
+***data***
+![](../img/lab01/ejer02.png)
+
+
+***Graph***
+
+![](../img/lab01/grafica02.png)
 
 3. **If-then-else statements - O(n)** ***Piero De La Cruz***
 
