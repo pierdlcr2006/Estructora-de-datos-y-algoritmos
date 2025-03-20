@@ -177,10 +177,10 @@ run_algorithm(logarithmic_algorithm, n_values, "Complejidad Logarítmica - O(log
 
 ```
 ***data***
-<img src="./img/image.png" align="center"> 
+<img src="../img/lab01/image.png" align="center"> 
 ***Graph***
 
-<img src="./img/grafica01.png" align="center"> 
+<img src="../img/lab01/grafica01.png" align="center"> 
 
 
 2. **Simple Loop - O(n)**
