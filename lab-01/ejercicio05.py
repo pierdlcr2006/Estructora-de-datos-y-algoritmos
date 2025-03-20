@@ -32,19 +32,15 @@ def run_algorithm(algorithm_func, n_values, title):
 
 
 
-# 3. If-then-else statements - O(n)
-def if_then_else(n):
-    """Algorithm with conditional O(n) complexity"""
-    if n % 2 == 0:
+# 5. Consecutive statements - O(n + n²) = O(n²)
+def consecutive_statements(n):
+    """Algorithm with O(n + n²) complexity"""
+    for _ in range(n):
+        pass
+
+    for _ in range(n):
         for _ in range(n):
             pass
-    else:
-        for _ in range(n):
-            pass
+quadratic_n_values = [100, 400, 600, 800, 1000, 1100]
 
-log_condt= [1,10,100,1000,10000,100000]
-
-run_algorithm(if_then_else,log_condt,'Linear Complexity')
-
-
-
+run_algorithm(consecutive_statements, quadratic_n_values, "Consecutive Statements - Mixed Complexity")

@@ -187,7 +187,7 @@ run_algorithm(logarithmic_algorithm, n_values, "Complejidad Logarítmica - O(log
 
 
 
-1. **Simple Loop - O(n)**
+2. **Simple Loop - O(n)**
     **Luis Miguel Toledo**
 
     Calcular el tiempo de procesamiento para un bucle simple, los valores de n serán: 10^2, 10^3, 10^4, 10^5 y 10^6.
@@ -207,9 +207,9 @@ run_algorithm(logarithmic_algorithm, n_values, "Complejidad Logarítmica - O(log
     Write a Python script to measure the execution time of a loop for different loop sizes (10² to 10⁶) and plot the results using matplotlib, with a logarithmic scale for both axes.
 
     ****Comments from colleagues****
-    - Chuco
-  
-    - De la Cruz 
+    **Chuco:** The inclusion of the logarithmic scale greatly enhanced the clarity of the plot, particularly for the larger loop sizes. It made it easier to observe how the processing time increases more gradually with smaller loop sizes and more significantly with larger ones.
+
+    **De la Cruz:** Teammates also emphasized that the logarithmic scale helped distinguish the differences in processing times for the larger values of n. Without this scale, the variations in times for larger values could have appeared less noticeable, limiting the interpretability of the data.
 
 ```python
 
@@ -249,6 +249,14 @@ run_algorithm(logarithmic_algorithm, n_values, "Complejidad Logarítmica - O(log
 
 ```
 
+***data***
+![](../img/lab01/ejer02.png)
+
+
+***Graph***
+
+![](../img/lab01/grafica02.png)
+
 3. **If-then-else statements - O(n)** ***Piero De La Cruz***
 
     Calcular el tiempo de procesamiento para un condicional con un bucle simple, los valores de n serán: 1, 10, 100, 1000, 10000, 100000.
@@ -268,7 +276,7 @@ run_algorithm(logarithmic_algorithm, n_values, "Complejidad Logarítmica - O(log
     run_algorithm(if_then_else,log_condt,'Linear Complexity')
 
 ```
-![](../img/lab01/ejer3.png)
+![](../img/lab01/grafica03.png)
 
 4. **Nested Loops - O(n²)**
 
@@ -299,7 +307,12 @@ run_algorithm(logarithmic_algorithm, n_values, "Complejidad Logarítmica - O(log
         for _ in range(n):
             pass
 
+    quadratic_n_values = [100, 400, 600, 800, 1000, 1100]
+    run_algorithm(consecutive_statements, quadratic_n_values,  
+    "ConsecutiveStatements-MixedComplexity")
+
 ```
+![](../img/lab01/grafica05.png)
 
 ## Identificar Algoritmo
 
