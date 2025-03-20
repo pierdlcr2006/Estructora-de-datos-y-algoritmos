@@ -1,60 +1,41 @@
 import time
-import matplotlib.pyplot as plt 
+import matplotlib.pyplot as plt
+
 def measure_time(func, n):
-    """Measures execution time of a function"""
+    """Measure the execution time of a function with input n."""
     start_time = time.time()
     func(n)
-    end_time = time.time()
-    return end_time - start_time
-
+    return time.time() - start_time
 
 def plot_times(n_values, times, title):
-    """Plots execution times"""
-    plt.plot(n_values, times, 'o-')
+    """Plot execution times against input sizes."""
+    plt.figure(figsize=(8, 5))
+    plt.plot(n_values, times, marker='o', linestyle='-', color='b', label='Tiempo de ejecución (s)')
+    plt.xscale('log')  # Set logarithmic scale for better visualization
+    plt.xlabel('Tamaño de entrada (n)')
+    plt.ylabel('Tiempo de ejecución (s)')
     plt.title(title)
-    plt.xlabel('Input Size (n)')
-    plt.ylabel('Time (seconds)')
-    plt.grid(True)
+    plt.legend()
+    plt.grid(True, which="both", linestyle="--", linewidth=0.5)
     plt.show()
 
-
 def run_algorithm(algorithm_func, n_values, title):
-    """Runs algorithm and measures execution time for different n values"""
-    times = []
+    """Run algorithm and measure execution time for different n values."""
+    times = [measure_time(algorithm_func, n) for n in n_values]
 
-    for n in n_values:
-        time_taken = measure_time(algorithm_func, n)
-        times.append(time_taken)
-        print(f"n = {n}, time = {time_taken:.8f} seconds")
+    # Print results in a formatted way
+    for n, t in zip(n_values, times):
+        print(f"n = {n:7}, tiempo = {t:.8e} segundos")
 
     plot_times(n_values, times, title)
 
 def logarithmic_algorithm(n):
-    """Algorithm with O(log n) complexity"""
-    i = n
-    while i > 0:
-        i = i // 2
-        pass
-log_n_values = [1, 10, 100, 1000, 10000, 100000, 1000000]
-run_algorithm(logarithmic_algorithm, log_n_values, "Logarithmic Complexity")
-import matplotlib.pyplot as plt
+    """Algorithm with O(log n) complexity (binary reduction)."""
+    while n > 0:
+        n //= 2  # Integer division by 2 to simulate logarithmic complexity
 
-# Extraer valores de n y tiempos
-n_values, times = zip(*execution_times)
+# Define input sizes
+n_values = [1, 10, 100, 1000, 10000, 100000, 1000000]
 
-# Crear la gráfica
-plt.figure(figsize=(8, 5))
-plt.plot(n_values, times, marker='o', linestyle='-', color='b', label='Tiempo de ejecución (s)')
-
-# Configurar escala logarítmica en el eje x
-plt.xscale('log')
-
-# Etiquetas y título
-plt.xlabel('n (tamaño de entrada)')
-plt.ylabel('Tiempo de ejecución (s)')
-plt.title('Complejidad Logarítmica - O(log n)')
-plt.legend()
-plt.grid(True, which="both", linestyle="--", linewidth=0.5)
-
-# Mostrar la gráfica
-plt.show()
+# Run and visualize the algorithm
+run_algorithm(logarithmic_algorithm, n_values, "Complejidad Logarítmica - O(log n)")
