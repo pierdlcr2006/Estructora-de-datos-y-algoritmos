@@ -107,19 +107,21 @@ def run_algorithm(algorithm_func, n_values, title):
    ***Rafael Chuco***
 
     Calcular el tiempo de procesamiento para un condicional con un bucle simple, los valores de n serán : 1,10, 100, 1000, 10000 , 100000, 1000000.
-    ****- Prompt****
+
+    - Prompt
     Implement an algorithm with 𝑂(log 𝑛)complexity and measure its execution time for different values of n (1, 10, 100, 1000, 10000, 100000, 1000000). Use a modular function to execute the algorithm and compute the times. Then, plot the results on a logarithmic scale and display a table with the 𝑛 values and their execution times in scientific notation.
 
-    ****- Prompt analysis****
+    - Prompt analysis
     
     ✅ The prompt is well-structured, clear, and detailed.
     ✅ It avoids ambiguities and ensures clean and efficient code.
     ✅ It includes both execution and visual representation of the data
-    ****- Prompt Engineering****
+    
+    - Prompt Engineering
     Implement an algorithm with 𝑂(log⁡ 𝑛) complexity and measure its execution time for various values of  𝑛 (1, 10, 100, 1000, 10000, 100000, 1000000). Ensure the implementation follows best coding practices, using modular functions for execution and timing. Display the results in two ways:
 
-   - A table showing the 𝑛 values and their execution times in scientific notation.
-   - A graph with a logarithmic scale on the x-axis, clearly labeled and formatted for easy interpretation.
+      - A table showing the 𝑛 values and their execution times in scientific notation.
+      - A graph with a logarithmic scale on the x-axis, clearly labeled and formatted for easy interpretation.
     
     Optimize the code for readability and efficiency, ensuring accurate measurements and a visually appealing plot.
 
@@ -175,6 +177,12 @@ run_algorithm(logarithmic_algorithm, n_values, "Complejidad Logarítmica - O(log
 
 
 ```
+***data***
+<img src="./img/image.png" align="center"> 
+***Graph***
+
+<img src="./img/grafica01.png" align="center"> 
+
 
 2. **Simple Loop - O(n)**
 
