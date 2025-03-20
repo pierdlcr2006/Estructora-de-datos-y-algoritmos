@@ -192,8 +192,6 @@ run_algorithm(logarithmic_algorithm, n_values, "Complejidad Logarítmica - O(log
 
     Calcular el tiempo de procesamiento para un bucle simple, los valores de n serán: 10^2, 10^3, 10^4, 10^5 y 10^6.
 
-    Prompt Engineering
-
     **Prompt Entered and Screenshot:**
     Write a Python script to measure the execution time of a loop for different loop sizes (10² to 10⁶) and visualize the results using matplotlib.
 
