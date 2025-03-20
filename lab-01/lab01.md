@@ -280,6 +280,26 @@ run_algorithm(logarithmic_algorithm, n_values, "Complejidad Logarítmica - O(log
 
     Calcular el tiempo de procesamiento para un bucle anidado de nivel 2, los valores de n serán: 100, 400, 600, 800, 1000, 1100.
 
+    **Prompt:**
+    Generate a Python function with a nested loop structure that has a time complexity of O(n²). It should take an input value n and perform n iterations inside another loop of n iterations. Additionally, create a list of values to test the function with different n values: [100, 400, 600, 800, 1000, 1100]. Use an external function run_algorithm from a module called functions to measure the execution time for each value in the list.
+
+    **Prompt Analysis:**
+    The prompt is clearly defined: it focuses on measuring the execution time of a nested loop algorithm with quadratic complexity (O(n²)) for different values of n. It also specifies using an external function, run_algorithm, to measure execution time, which implies the focus is on understanding the relationship between n and time complexity.
+
+    One potential issue is that the prompt does not specify how run_algorithm works or how the results will be visualized, which might limit the interpretability of the execution times.
+
+    **Prompt Adjustments and Screenshot:**
+    To enhance the prompt, it was updated to include a graphical representation of the execution times using matplotlib. Additionally, the prompt was adjusted to capture the execution time for each n value and plot it on a graph. Visualizing the results helps in better understanding the quadratic growth in complexity.
+
+    **Updated prompt:**
+    Generate a Python function with a nested loop structure that has a time complexity of O(n²). It should take an input value n and perform n iterations inside another loop of n iterations. Additionally, create a list of values to test the function with different n values: [100, 400, 600, 800, 1000, 1100]. Use an external function run_algorithm from a module called functions to measure the execution time for each value in the list. Plot the results using matplotlib to visualize the time complexity growth for each value of n.
+
+    **Chuco:**
+    "The addition of a graph using matplotlib significantly improved the understanding of how the quadratic complexity impacts the runtime. It was much easier to visualize how the execution time grows as n increases, especially for larger values."
+
+    **De la Cruz:**
+    "By including the graph, we were able to better distinguish the difference in execution times for each value of n. Without this visualization, it would have been harder to grasp the rapid increase in time complexity as n grows. Great work!"
+
 ```python
 
     def nested_loops(n):
