@@ -290,7 +290,12 @@ run_algorithm(logarithmic_algorithm, n_values, "Complejidad Logarítmica - O(log
         for _ in range(n):
             pass
 
+    quadratic_n_values = [100, 400, 600, 800, 1000, 1100]
+    run_algorithm(nested_loops, quadratic_n_values, "Nested Loops - Quadratic Complexity")
+
 ```
+
+![](../img/lab01/grafica04.png)
 
 5. **Nested Loops - O(n²)**
 
@@ -375,7 +380,7 @@ print(f"La suma de los primeros {n} números naturales es: {sum_natural_numbers_
 
 1. Different algorithms exhibit varying execution times depending on their complexity, with \(O(\log n)\) maintaining low times while \(O(n^2)\) grows exponentially.  
 
-1. Optimization can drastically improve performance, as seen in reducing an \(O(n)\) loop-based sum to an \(O(1)\) mathematical formula.  
+2. Optimization can drastically improve performance, as seen in reducing an \(O(n)\) loop-based sum to an \(O(1)\) mathematical formula.  
 
-2. Data visualization, especially with logarithmic scales, helps in analyzing and interpreting algorithm performance effectively.
+3. Data visualization, especially with logarithmic scales, helps in analyzing and interpreting algorithm performance effectively.
 

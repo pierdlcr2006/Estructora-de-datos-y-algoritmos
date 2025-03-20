@@ -29,18 +29,3 @@ def run_algorithm(algorithm_func, n_values, title):
         print(f"n = {n}, time = {time_taken:.8f} seconds")
 
     plot_times(n_values, times, title)
-
-
-
-# 5. Consecutive statements - O(n + n²) = O(n²)
-def consecutive_statements(n):
-    """Algorithm with O(n + n²) complexity"""
-    for _ in range(n):
-        pass
-
-    for _ in range(n):
-        for _ in range(n):
-            pass
-quadratic_n_values = [100, 400, 600, 800, 1000, 1100]
-
-run_algorithm(consecutive_statements, quadratic_n_values, "Consecutive Statements - Mixed Complexity")
