@@ -372,5 +372,10 @@ print(f"La suma de los primeros {n} números naturales es: {sum_natural_numbers_
 
 
 ## Conclusiones
-1. 
+
+1. Different algorithms exhibit varying execution times depending on their complexity, with \(O(\log n)\) maintaining low times while \(O(n^2)\) grows exponentially.  
+
+1. Optimization can drastically improve performance, as seen in reducing an \(O(n)\) loop-based sum to an \(O(1)\) mathematical formula.  
+
+2. Data visualization, especially with logarithmic scales, helps in analyzing and interpreting algorithm performance effectively.
 
