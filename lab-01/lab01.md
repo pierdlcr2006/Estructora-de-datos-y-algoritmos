@@ -104,9 +104,8 @@ def run_algorithm(algorithm_func, n_values, title):
 ```
 
 1. **Logarithmic complexity - O(log n)**
-   ***Rafael Chuco***
-
-    Calcular el tiempo de procesamiento para un condicional con un bucle simple, los valores de n serán : 1,10, 100, 1000, 10000 , 100000, 1000000.
+   **Rafael Chuco**
+   <p>Calcular el tiempo de procesamiento para un condicional con un bucle simple, los valores de n serán : 1,10, 100, 1000, 10000 , 100000, 1000000. </p>
 
     - Prompt
     Implement an algorithm with 𝑂(log 𝑛)complexity and measure its execution time for different values of n (1, 10, 100, 1000, 10000, 100000, 1000000). Use a modular function to execute the algorithm and compute the times. Then, plot the results on a logarithmic scale and display a table with the 𝑛 values and their execution times in scientific notation.
@@ -126,9 +125,9 @@ def run_algorithm(algorithm_func, n_values, title):
     Optimize the code for readability and efficiency, ensuring accurate measurements and a visually appealing plot.
 
     ****Comments from colleagues****
-    - Toledo
+    - Toledo : A well-formatted table showing 𝑛 values and execution times in scientific notation with aligned columns.
   
-    - De la Cruz 
+    - De la Cruz: A logarithmic plot (using Matplotlib) with a properly labeled x-axis (log scale), a y-axis representing execution time, grid lines for clarity, and markers for data points.
 
 
 ```python
