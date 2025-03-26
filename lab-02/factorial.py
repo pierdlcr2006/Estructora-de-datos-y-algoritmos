@@ -5,4 +5,5 @@ def factorial(n):
         return n * factorial(n - 1)
 
 if __name__ == "__main__":
-    print(factorial(9))  # Esto imprimirá 362880
+    print(factorial(9))
+    
