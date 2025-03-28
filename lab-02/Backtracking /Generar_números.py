@@ -7,3 +7,7 @@ def generar_numeros(n, prefix=""):
 
 # Ejemplo: Generar números de longitud 3 con los dígitos 1, 2 y 3
 generar_numeros(3)
+
+
+for i in "123":
+        print(i);
