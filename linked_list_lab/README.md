@@ -3,7 +3,7 @@
 </p>
 
 # Algoritmos y Estructuras de Datos  
-## Lab02: Recursion and Backtracking  
+## Lab03: Linked lists
 
 ## Capacidades
 
