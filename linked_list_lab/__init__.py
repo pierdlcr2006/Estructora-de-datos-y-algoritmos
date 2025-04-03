@@ -1,1 +1,0 @@
-# Este archivo permite que linked_list_lab sea un paquete importable

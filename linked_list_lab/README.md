@@ -3,6 +3,10 @@
 </p>
 
 # Algoritmos y Estructuras de Datos  
+<<<<<<< HEAD
+=======
+## Lab03: Linked lists
+>>>>>>> 933b23b5cc884c1c0af250662c286e7f91e9d81b
 
 ## Linked Lists Laboratory 
 
