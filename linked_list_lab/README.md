@@ -3,62 +3,22 @@
 </p>
 
 # Algoritmos y Estructuras de Datos  
-## Lab02: Recursion and Backtracking  
 
-## Capacidades
+## Linked Lists Laboratory 
 
-- Definir las reglas básicas para la creación de listas enlazadas.
+## Content 
 
-## Seguridad
+- [Node Class](#part-1-the-node-class)
 
-- Generar un ambiente seguro
-- Evitar el consumo de alimentos
-- Dejar el ambiente ordenado y limpio
+- [LinkedList Class](#linked-lists-laboratory)
 
-## Preparación
+- [Basic Operations](#part3-basic-operations)
 
-- El alumno debe revisar previamente el material cargado
+- [More Advanced Operations](#part-4-more-advanced-operations)   
 
-## Recursos
+- [Testing The Implementation](#part-5-testing-your-implementation)
 
-- Computadora
-
-## Instrucciones
-
-Cada integrante del grupo debe seleccionar un ejercicio diferente y desarrollarlo con la siguiente estructura.
-
-- **Nombre del alumno**
-- **Ejercicio a desarrollar**
-- **Prompt engineering**
-
-    - Prompt ingresado y captura
-    - Análisis del prompt
-    - Ajustes de prompt y captura
-    - Comentarios de los compañeros
-
-- **Código**
-    - Código desarrollado
-    - Análisis del código
-    - Comentarios de los compañeros
-
-Desarrollar todo el código en inglés
-
-# Linked Lists Laboratory 
-
-## Introduction
-
-Welcome to the Linked Lists Laboratory! In this lab, you'll gain hands-on experience implementing and working with linked lists in Python. This step-by-step guide will help you understand the core concepts of linked lists and their operations.
-
-## Learning Objectives
-
-By the end of this lab, you should be able to:
-
-1. Implement a singly linked list data structure
-2. Understand the basic operations of linked lists
-3. Analyze the time and space complexity of different operations
-4. Apply linked lists to solve practical problems
-
-# Part 1: The Node Class
+## Part 1: The Node Class
  
 ``` python
 
@@ -81,7 +41,7 @@ By the end of this lab, you should be able to:
 
 ```
 
-# Part 2: The LinkedList Class
+## Part 2: The LinkedList Class
 
 ``` Python
 
@@ -93,9 +53,9 @@ By the end of this lab, you should be able to:
 
 ```
 
-# Part3: Basic Operations
+## Part3: Basic Operations
 
-## Exercise 1: Displaying the List
+### Exercise 1: Displaying the List
 
 Implement a method to display all elements in the list.
 
@@ -110,7 +70,7 @@ def display(self):
 
 ```
 
-## Exercise 2: Counting Nodes
+### Exercise 2: Counting Nodes
 
 Implement a method to count the number of nodes in the linked list.
 
@@ -126,7 +86,7 @@ Implement a method to count the number of nodes in the linked list.
 
 ```
 
-## Exercise 3: Insertion at the Beginning
+### Exercise 3: Insertion at the Beginning
 
 Implement a method to insert a new node at the beginning of the list.
 
@@ -139,7 +99,7 @@ Implement a method to insert a new node at the beginning of the list.
 
 ```
 
-## Exercise 4: Insertion at the End
+### Exercise 4: Insertion at the End
 
 Implement a method to insert a new node at the end of the list.
 
@@ -158,7 +118,7 @@ Implement a method to insert a new node at the end of the list.
 
 ```
 
-## Exercise 5: Insertion at a Specific Position
+### Exercise 5: Insertion at a Specific Position
 
 Implement a method to insert a new node at a specific position in the list.
 
@@ -197,9 +157,9 @@ Implement a method to insert a new node at a specific position in the list.
 
 ```
 
-# Part 4: More Advanced Operations
+## Part 4: More Advanced Operations
 
-## Exercise 6: Deletion from the Beginning
+### Exercise 6: Deletion from the Beginning
 
 Implement a method to delete a node from the beginning of the list.
 
@@ -218,7 +178,7 @@ Implement a method to delete a node from the beginning of the list.
     
 ```
 
-## Exercise 7: Deletion from the End
+### Exercise 7: Deletion from the End
 
 Implement a method to delete a node from the end of the list.
 
@@ -250,7 +210,7 @@ Implement a method to delete a node from the end of the list.
 
 ```
 
-## Exercise 8: Deletion from a Specific Position
+### Exercise 8: Deletion from a Specific Position
 
 Implement a method to delete a node from a specific position in the list.
 
@@ -287,7 +247,18 @@ Implement a method to delete a node from a specific position in the list.
 
         return data
 
-    def search(self, data):
+
+
+```
+
+### Exercise 9: Searching
+
+Implement a method to search for a value in the list and return its position.
+
+
+```Python
+
+     def search(self, data):
         """Find the position of data in the list, or return -1 if not found."""
         if self.head is None:
             return -1
@@ -305,7 +276,7 @@ Implement a method to delete a node from a specific position in the list.
 
 ```
 
-## Exercise 10: Finding the Nth Node from the End
+### Exercise 10: Finding the Nth Node from the End
 
 Implement a method to find the nth node from the end of the list.
 
@@ -330,7 +301,7 @@ Implement a method to find the nth node from the end of the list.
 
 ```
 
-## Exercise 11: Clearing the List
+### Exercise 11: Clearing the List
 
 Implement a method to clear all nodes from the list.
 
@@ -344,5 +315,55 @@ Implement a method to clear all nodes from the list.
 
 ```
 
-# Part 5: Testing Your Implementation
+## Part 5: Testing Your Implementation
 
+```Python 
+
+    def test_linked_list():
+    """Test the LinkedList implementation with basic operations."""
+    my_list = LinkedList()
+    print("Created a new linked list")
+    print(f"List: {my_list.display()}")
+    print(f"Length: {my_list.list_length()}")
+
+    # Test insertions
+    print("\nTesting insertions:")
+    my_list.insert_at_beginning(5)
+    print(f"After insert_at_beginning(5): {my_list.display()}")
+
+    my_list.insert_at_beginning(10)
+    print(f"After insert_at_beginning(10): {my_list.display()}")
+
+    my_list.insert_at_end(20)
+    print(f"After insert_at_end(20): {my_list.display()}")
+
+    my_list.insert_at_position(1, 15)
+    print(f"After insert_at_position(1, 15): {my_list.display()}")
+    print(f"Current length: {my_list.list_length()}")
+
+    # Test search
+    print("\nTesting search:")
+    print(f"Position of 15: {my_list.search(15)}")
+    print(f"Position of 100: {my_list.search(100)}")
+
+    # Test deletions
+    print("\nTesting deletions:")
+    deleted = my_list.delete_from_beginning()
+    print(f"Deleted from beginning: {deleted}")
+    print(f"After deletion: {my_list.display()}")
+
+    deleted = my_list.delete_from_position(1)
+    print(f"Deleted from position 1: {deleted}")
+    print(f"After deletion: {my_list.display()}")
+
+    deleted = my_list.delete_from_end()
+    print(f"Deleted from end: {deleted}")
+    print(f"After deletion: {my_list.display()}")
+
+    # Clear the list
+    print("\nTesting clear:")
+    my_list.clear()
+    print(f"After clear: {my_list.display()}")
+    print(f"Length after clear: {my_list.list_length()}")
+
+```
