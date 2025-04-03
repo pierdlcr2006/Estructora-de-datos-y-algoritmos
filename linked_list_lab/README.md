@@ -22,6 +22,8 @@
 
 - [Testing The Implementation](#part-5-testing-your-implementation)
 
+- [Execution Results](#execution-results)
+
 ## Part 1: The Node Class
  
 ``` python
@@ -369,5 +371,57 @@ Implement a method to clear all nodes from the list.
     my_list.clear()
     print(f"After clear: {my_list.display()}")
     print(f"Length after clear: {my_list.list_length()}")
+
+```
+
+## Execution Results
+
+```
+    Created a new linked list
+List: Empty list
+Length: 0
+
+Inserting elements at the beginning...
+List: 15 -> 10 -> 5 -> None
+Length: 3
+
+Inserting elements at the end...
+List: 15 -> 10 -> 5 -> 20 -> 25 -> None
+Length: 5
+
+Inserting elements at specific positions...
+List: 15 -> 10 -> 30 -> 5 -> 35 -> 20 -> 25 -> None
+Length: 7
+
+Searching for elements...
+Position of 30: 2
+Position of 100: -1
+
+Finding elements from the end...
+2nd element from the end: 20
+4th element from the end: 35
+
+Deleting elements from the beginning...
+Deleted element: 15
+List: 10 -> 30 -> 5 -> 35 -> 20 -> 25 -> None
+Length: 6
+
+Deleting elements from the end...
+Deleted element: 25
+List: 10 -> 30 -> 5 -> 35 -> 20 -> None
+Length: 5
+
+Deleting elements from specific positions...
+Element deleted from position 2: 5
+List: 10 -> 30 -> 35 -> 20 -> None
+Length: 4
+
+Clearing the list...
+List: Empty list
+Length: 0
+
+Inserting new elements after clearing...
+List: 100 -> 150 -> 200 -> None
+Length: 3
 
 ```
