@@ -59,7 +59,6 @@ lista.append(10)  # Agrega 10 a la lista
 lista.append(20)  # Agrega 20 a la lista
 lista.append(30)  # Agrega 30 a la lista
 
-
 # Imprime el número de nodos antes de limpiar la lista
 print("Número de nodos antes de limpiar:", lista.list_length())  # Salida: 3
 

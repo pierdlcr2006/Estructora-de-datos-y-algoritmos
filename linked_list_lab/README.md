@@ -372,4 +372,3 @@ Implement a method to clear all nodes from the list.
 
 ```
 
-chucooo

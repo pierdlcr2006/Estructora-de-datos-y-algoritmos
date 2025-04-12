@@ -60,6 +60,7 @@ if __name__ == "__main__":
     ll.insert_at_position(0, 10)  # Inserta 10 en la posición 0
     ll.insert_at_position(1, 20)  # Inserta 20 en la posición 1
     ll.insert_at_position(1, 15)  # Inserta 15 en la posición 1
+    ll.insert_at_position(33, 25)  # Inserta 25 en la posición 3
 
     # Imprime los elementos de la lista enlazada
     ll.print_list()  # Debería mostrar: 10 → 15 → 20 → None

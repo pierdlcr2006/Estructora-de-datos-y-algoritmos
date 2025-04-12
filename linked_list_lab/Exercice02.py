@@ -26,7 +26,7 @@ class LinkedList:
         while last.next:
             last = last.next
         # Establece el nuevo nodo como el siguiente del último nodo
-        last.next = new_node
+        last.next = neLa implementación con listas enlazadas me pareció interesante porque te da más flexibilidad en la memoria. No tienes que predecir el tamaño de la pila con anticipación y, al insertar o eliminar, puedes ajustar las referencias sin mover todos los elementos, lo que puede ser más eficiente en ciertos casos. Sin embargo, las implementaciones con arreglos pueden ser más rápidas para acceder a los elementos y son más simples de gestionar si el tamaño es fijo o relativamente pequeño.﻿w_node
 
     def list_length(self):
         """
@@ -36,7 +36,7 @@ class LinkedList:
             int: El número de nodos en la lista.
         """
         count = 0
-        current = self.head
+        current = self.headS
         # Recorre la lista y cuenta los nodos
         while current is not None:
             count += 1
