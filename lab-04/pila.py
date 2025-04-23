@@ -26,4 +26,4 @@ min_stack = MinStack()
 min_stack.push(3)
 min_stack.push(1)
 min_stack.push(2)
-print(min_stack.get_min())  # Output: 1
+print(min_stack.get_min())  # Output: 1S

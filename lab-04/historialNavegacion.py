@@ -28,4 +28,5 @@ class BrowserHistory:
 browser = BrowserHistory()
 browser.visit("google.com")
 browser.visit("youtube.com")
-print(browser.back())  # Output: google.com
+print(browser.back())
+
