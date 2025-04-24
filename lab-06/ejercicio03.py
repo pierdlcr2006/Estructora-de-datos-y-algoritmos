@@ -1,19 +1,14 @@
 from collections import deque
-import random
 import time
 
 def traffic_light_simulation():
     # Simulamos el flujo de tráfico en una intersección
     lanes = {
-        'Norte': deque(),
-        'Sur': deque(),
-        'Este': deque(),
-        'Oeste': deque()
+        'Norte': deque(['Car1', 'Car2', 'Car3']),
+        'Sur': deque(['Car1', 'Car2']),
+        'Este': deque(['Car1', 'Car2', 'Car3', 'Car4']),
+        'Oeste': deque(['Car1', 'Car2', 'Car3'])
     }
-    
-    # Agregar vehículos aleatorios a cada carril
-    for lane in lanes:
-        lanes[lane].extend([f"Car{i}" for i in range(random.randint(1, 5))])
     
     # Ciclo de semáforo: alternar entre direcciones
     directions = ['Norte', 'Sur', 'Este', 'Oeste']
@@ -29,3 +24,4 @@ def traffic_light_simulation():
     print("Simulación de tráfico completada.")
 
 traffic_light_simulation()
+
