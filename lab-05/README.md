@@ -367,28 +367,28 @@ Simula el juego de "Papas Calientes" usando una **cola (queue)**.
 ```python
 import random
 
-class HotPotatoGame:
-    def __init__(self, players, max_passes):
-        self.players = LinkedQueue()
-        for player in players:
-            self.players.enqueue(player)
-        self.max_passes = max_passes
+import random
+from collections import deque
 
-    def play(self):
-        while self.players.size() > 1:
-            passes = random.randint(1, self.max_passes)
-            for _ in range(passes):
-                self.players.enqueue(self.players.dequeue())
-            eliminated = self.players.dequeue()
-            print(f"{eliminated} was eliminated!")
-        
-        return self.players.dequeue()
+def hot_potato(players, max_passes):
+    queue = deque(players)
 
-# Simulación del juego
-players = ['Alice', 'Bob', 'Charlie', 'David', 'Eve']
-game = HotPotatoGame(players, 5)
-winner = game.play()
-print(f"The winner is {winner}")
+    while len(queue) > 1:
+        passes = random.randint(1, max_passes)
+        for _ in range(passes):
+            player = queue.popleft()
+            queue.append(player)
+        eliminated = queue.popleft()
+        print(f"{eliminated} fue eliminado 😵")
+
+    winner = queue.pop()
+    print(f"🎉 El ganador es: {winner}")
+    return winner
+
+
+# Ejemplo de uso
+players_list = ["Ana", "Luis", "Carlos", "Marta", "Elena", "José"]
+hot_potato(players_list, max_passes=9)
 ```
 
 ### Exercise 4: Sliding Window Maximum
