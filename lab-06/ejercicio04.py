@@ -1,18 +1,18 @@
 from collections import deque
 
-def task_scheduler(tasks, time_quantum):
+def round_robin_scheduler(tasks, quantum):
     queue = deque(tasks)
-    result = []
-
     while queue:
         task = queue.popleft()
-        result.append(f"Executing {task}")
-        if task != 'done':
-            queue.append('done')  # Add a task back to the queue if it's not finished
+        print(f"Ejecutando tarea: {task}")
+        # Si la tarea necesita más tiempo, vuelve a la cola
+        if task != "Tarea final":
+            queue.append(task)
+        time.sleep(1)  # Simula el tiempo de ejecución de cada tarea
 
-    return result
+    print("Todas las tareas han sido completadas.")
 
-# Example
-tasks = ['Task 1', 'Task 2', 'Task 3']
-time_quantum = 2  # Simulated by the order
-print(task_scheduler(tasks, time_quantum))
+# Ejemplo de uso
+tasks = ["Tarea 1", "Tarea 2", "Tarea 3", "Tarea final"]
+quantum = 2
+round_robin_scheduler(tasks, quantum)

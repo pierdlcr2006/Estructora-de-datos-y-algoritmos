@@ -1,32 +1,29 @@
-
 from collections import deque
 
 def sliding_window_max(nums, k):
-    if not nums:
-        return []
-
-    window = deque()
+    # Creamos una cola deque para almacenar los índices de los elementos de la ventana
     result = []
-
+    dq = deque()
+    
     for i in range(len(nums)):
-        # Remove elements out of this window
-        while window and window[0] <= i - k:
-            window.popleft()
-
-        # Remove all elements smaller than the current element from the queue
-        while window and nums[window[-1]] <= nums[i]:
-            window.pop()
-
-        # Add the current element at the end of the deque
-        window.append(i)
-
-        # Add the maximum element of the current window to the result
+        # Eliminar los elementos fuera de la ventana
+        if dq and dq[0] < i - k + 1:
+            dq.popleft()
+        
+        # Eliminar los elementos menores que el actual
+        while dq and nums[dq[-1]] <= nums[i]:
+            dq.pop()
+        
+        dq.append(i)
+        
+        # Agregar el máximo de la ventana a la lista de resultados
         if i >= k - 1:
-            result.append(nums[window[0]])
-
+            result.append(nums[dq[0]])
+    
+    print("Máximos en cada ventana deslizante:", result)
     return result
 
-# Example
+# Ejemplo de uso
 nums = [1, 3, -1, -3, 5, 3, 6, 7]
 k = 3
-print(sliding_window_max(nums, k))
+sliding_window_max(nums, k)
