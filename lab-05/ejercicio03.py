@@ -1,49 +1,51 @@
-class PriorityQueue:
-    """Implementación de una cola con prioridad."""
+import random
+from collections import deque
 
-    def __init__(self):
-        self.items = []
+def hot_potato_game(players, max_passes):
+    queue = deque(players)  # Representing the circle of players
+    
+    while len(queue) > 1:  # Continue until only one player remains
+        passes = random.randint(1, max_passes)  # Random number of passes
+        # Simulate the passing
+        queue.rotate(-passes)  # Move players around the queue
+        # Remove the player holding the hot potato
+        queue.popleft()  # The player is eliminated
+    
+    return queue[0]  # Return the winner
 
-    def is_empty(self):
-        return len(self.items) == 0
+# Example usage
+players = ['Alice', 'Bob', 'Charlie', 'David', 'Eve']
+max_passes = 4
+winner = hot_potato_game(players, max_passes)
+winner
+import random
+from collections import deque
 
-    def size(self):
-        return len(self.items)
+def hot_potato_game(players, max_passes):
+    queue = deque(players)  # Representing the circle of players
+    print(f"Jugadores iniciales: {list(queue)}")
+    
+    round_number = 1
+    while len(queue) > 1:  # Continue until only one player remains
+        passes = random.randint(1, max_passes)  # Random number of passes
+        print(f"\nRonda {round_number}: La papa se pasa {passes} veces")
+        
+        # Simulate the passing
+        queue.rotate(-passes)  # Move players around the queue
+        
+        # Remove the player holding the hot potato
+        eliminated = queue.popleft()  # The player is eliminated
+        print(f"¡{eliminated} ha sido eliminado!")
+        print(f"Jugadores restantes: {list(queue)}")
+        
+        round_number += 1
+    
+    return queue[0]  # Return the winner
 
-    def enqueue(self, item, priority):
-        """Inserta un elemento con su prioridad."""
-        self.items.append((priority, item))
+# Example usage
+players = ['Alice', 'Bob', 'Charlie', 'David', 'Eve']
+max_passes = 4
 
-    def peek(self):
-        """Devuelve el elemento de mayor prioridad sin eliminarlo."""
-        if self.is_empty():
-            raise IndexError("La cola está vacía")
-
-        highest = self.items[0]
-        for pair in self.items:
-            if pair[0] > highest[0]:
-                highest = pair
-        return highest[1]
-
-    def dequeue(self):
-        """Elimina y devuelve el elemento de mayor prioridad."""
-        if self.is_empty():
-            raise IndexError("La cola está vacía")
-
-        max_idx = 0
-        for i in range(1, len(self.items)):
-            if self.items[i][0] > self.items[max_idx][0]:
-                max_idx = i
-        return self.items.pop(max_idx)[1]
-
-
-# 🧪 Prueba
-if __name__ == "__main__":
-    pq = PriorityQueue()
-    pq.enqueue("Tarea1", 2)
-    pq.enqueue("TareaUrgente", 5)
-    pq.enqueue("TareaMedia", 3)
-    print(pq.peek())       # TareaUrgente
-    print(pq.dequeue())    # TareaUrgente
-    print(pq.dequeue())    # TareaMedia
-    print(pq.dequeue())    # Tarea1
+print("Iniciando el juego de la Papa Caliente...\n")
+winner = hot_potato_game(players, max_passes)
+print(f"\n¡{winner} es el ganador del juego de la Papa Caliente!")

@@ -19,7 +19,6 @@ def sliding_window_max(nums, k):
         # Agregar el máximo de la ventana a la lista de resultados
         if i >= k - 1:
             result.append(nums[dq[0]])
-    
     print("Máximos en cada ventana deslizante:", result)
     return result
 

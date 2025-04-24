@@ -5,10 +5,10 @@ import time
 def traffic_light_simulation():
     # Simulamos el flujo de tráfico en una intersección
     lanes = {
-        'North': deque(),
-        'South': deque(),
-        'East': deque(),
-        'West': deque()
+        'Norte': deque(),
+        'Sur': deque(),
+        'Este': deque(),
+        'Oeste': deque()
     }
     
     # Agregar vehículos aleatorios a cada carril
@@ -16,7 +16,7 @@ def traffic_light_simulation():
         lanes[lane].extend([f"Car{i}" for i in range(random.randint(1, 5))])
     
     # Ciclo de semáforo: alternar entre direcciones
-    directions = ['North', 'South', 'East', 'West']
+    directions = ['Norte', 'Sur', 'Este', 'Oeste']
     
     for direction in directions:
         print(f"\nSemáforo para {direction} en verde:")

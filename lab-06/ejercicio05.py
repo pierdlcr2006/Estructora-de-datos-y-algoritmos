@@ -33,3 +33,6 @@ cb.add(3)
 cb.add(4)  # Sobrescribe el dato 1
 print("Elementos en el búfer:", cb.get_latest())
 print("Estadísticas del búfer:", cb.stats())
+print("Elemento más antiguo:", cb.buffer[cb.head])
+print("Elemento más reciente:", cb.buffer[cb.tail - 1])
+

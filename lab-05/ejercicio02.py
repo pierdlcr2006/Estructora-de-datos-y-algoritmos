@@ -1,69 +1,34 @@
-class CircularDeque:
-    """Cola doble circular con capacidad fija."""
+class TreeNode:
+    def __init__(self, value=0, left=None, right=None):
+        self.value = value
+        self.left = left
+        self.right = right
 
-    def __init__(self, k):
-        self.capacity = k
-        self.data = [None] * k
-        self.front = 0
-        self.rear = 0
-        self.count = 0
+def level_order_traversal(root):
+    if not root:
+        return []
+    
+    result = []
+    queue = [root]  # Initialize the queue with the root node
+    
+    while queue:
+        node = queue.pop(0)  # Dequeue the front node
+        result.append(node.value)  # Process the current node
+        
+        if node.left:  # Enqueue left child if it exists
+            queue.append(node.left)
+        if node.right:  # Enqueue right child if it exists
+            queue.append(node.right)
+    
+    return result
 
-    def insertFront(self, value):
-        if self.isFull():
-            return False
-        self.front = (self.front - 1 + self.capacity) % self.capacity
-        self.data[self.front] = value
-        self.count += 1
-        return True
+# Example usage
+root = TreeNode(1)
+root.left = TreeNode(2)
+root.right = TreeNode(3)
+root.left.left = TreeNode(4)
+root.left.right = TreeNode(5)
+root.right.left = TreeNode(6)
+root.right.right = TreeNode(7)
 
-    def insertLast(self, value):
-        if self.isFull():
-            return False
-        self.data[self.rear] = value
-        self.rear = (self.rear + 1) % self.capacity
-        self.count += 1
-        return True
-
-    def deleteFront(self):
-        if self.isEmpty():
-            return False
-        self.front = (self.front + 1) % self.capacity
-        self.count -= 1
-        return True
-
-    def deleteLast(self):
-        if self.isEmpty():
-            return False
-        self.rear = (self.rear - 1 + self.capacity) % self.capacity
-        self.count -= 1
-        return True
-
-    def getFront(self):
-        if self.isEmpty():
-            return -1
-        return self.data[self.front]
-
-    def getRear(self):
-        if self.isEmpty():
-            return -1
-        return self.data[(self.rear - 1 + self.capacity) % self.capacity]
-
-    def isEmpty(self):
-        return self.count == 0
-
-    def isFull(self):
-        return self.count == self.capacity
-
-
-# 🧪 Prueba
-if __name__ == "__main__":
-    deque = CircularDeque(3)
-    print(deque.insertLast(1))   # True
-    print(deque.insertLast(2))   # True
-    print(deque.insertFront(3))  # True
-    print(deque.insertFront(4))  # False (llena)
-    print(deque.getRear())       # 2
-    print(deque.isFull())        # True
-    print(deque.deleteLast())    # True
-    print(deque.insertFront(4))  # True
-    print(deque.getFront())      # 4
+print(level_order_traversal(root)) # Perform level-order traversal
