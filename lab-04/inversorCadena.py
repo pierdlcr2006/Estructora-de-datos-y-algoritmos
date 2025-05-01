@@ -16,4 +16,4 @@ class StringReverser:
 
 # Ejemplo de uso
 reverser = StringReverser()
-print(reverser.reverse_string("Hola Mundo")) 
+print(reverser.reverse_string("Hola Mundo")) # -> output: odnuM aloH
