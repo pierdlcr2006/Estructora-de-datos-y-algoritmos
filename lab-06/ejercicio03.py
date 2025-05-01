@@ -19,7 +19,7 @@ def traffic_light_simulation():
         while lanes[direction]:
             car = lanes[direction].popleft()
             print(f"El vehículo {car} ha pasado.")
-            time.sleep(1)  # Simulamos el tiempo de espera para cada vehículo
+            time.sleep(0)  # Simulamos el tiempo de espera para cada vehículo
 
     print("Simulación de tráfico completada.")
 
