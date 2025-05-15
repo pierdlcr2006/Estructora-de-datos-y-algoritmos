@@ -3,7 +3,7 @@
 # -----------------------------------------------------
 # Descripción: Este programa implementa un simplificador
 # de expresiones matemáticas representadas como árboles binarios.
-´´´python 
+
     import colorama
     from colorama import Fore, Style, Back
     import time
@@ -410,4 +410,4 @@
     # Ejecutar las pruebas si este archivo es el principal
     if __name__ == "__main__":
         test_expression_tree_simplification()
-´´´
+
