@@ -1,22 +1,12 @@
-# 🌲 Desafío 3: Altura de Árbol Genérico
-# Tema: Cálculo de la Altura Máxima en Árboles con Múltiples Hijos
+# ------------------------- #
+# ALTURA DE ÁRBOL GENÉRICO
+# ------------------------- #
+# Implementación para calcular la altura máxima en un árbol 
+# donde cada nodo puede tener múltiples hijos (árbol genérico)
 
-# 📘 Conceptos Teóricos
-"""
-Altura de un Árbol:
-- La altura de un árbol es la longitud del camino más largo desde la raíz hasta una hoja.
-- Se define recursivamente:
-  * Árbol vacío: altura 0
-  * Nodo hoja: altura 1
-  * Árbol con hijos: 1 + máxima altura de los subárboles
-
-Características del Problema:
-- Trabajamos con árboles genéricos (nodos pueden tener múltiples hijos)
-- La recursividad es clave para resolver el problema
-- Debemos considerar todos los caminos posibles
-"""
-
-# 🌳 Definición de Clase de Árbol Genérico
+# ------------------------- #
+# DEFINICIÓN DE CLASES
+# ------------------------- #
 class GenericTreeNode:
     """
     Representa un nodo en un árbol genérico con múltiples hijos.
@@ -65,13 +55,52 @@ class GenericTreeNode:
         str
             Representación visual del árbol
         """
-        # 🖨️ Impresión con sangría para mostrar estructura jerárquica
+        # Impresión con sangría para mostrar estructura jerárquica
         ret = "\t" * level + str(self.value) + "\n"
         for child in self.children:
             ret += child.__str__(level + 1)
         return ret
+    
+    def to_ascii_tree(self, prefix="", is_last=True, is_root=True):
+        """
+        Genera una representación ASCII del árbol más visual.
+        
+        Parámetros:
+        -----------
+        prefix : str
+            Prefijo para la línea actual
+        is_last : bool
+            Indica si el nodo es el último hijo de su padre
+        is_root : bool
+            Indica si el nodo es la raíz del árbol
+        
+        Retorna:
+        --------
+        str
+            Representación ASCII del árbol
+        """
+        result = ""
+        
+        # Determinar el prefijo para el nodo actual
+        if not is_root:
+            result += prefix + ("└── " if is_last else "├── ") + str(self.value) + "\n"
+        else:
+            result += prefix + str(self.value) + "\n"
+        
+        # Prefijo para los hijos
+        child_prefix = prefix + ("    " if is_last else "│   ")
+        
+        # Procesar los hijos
+        child_count = len(self.children)
+        for i, child in enumerate(self.children):
+            is_last_child = i == child_count - 1
+            result += child.to_ascii_tree(child_prefix, is_last_child, False)
+            
+        return result
 
-# 📏 Función Principal: Calcular Altura del Árbol
+# ------------------------- #
+# ALGORITMO DE ALTURA
+# ------------------------- #
 def tree_height(root):
     """
     Calcula la altura de un árbol genérico de manera recursiva.
@@ -93,48 +122,173 @@ def tree_height(root):
     3. Encuentra la máxima altura entre todos los subárboles
     4. Retorna 1 (nodo actual) + máxima altura de subárboles
     """
-    # 🚦 Caso base: árbol vacío
+    # Caso base: árbol vacío
     if root is None:
         return 0
     
-    # 🍃 Caso base: nodo hoja (sin hijos)
+    # Caso base: nodo hoja (sin hijos)
     if not root.children:
         return 1
     
-    # 📊 Calcular altura máxima entre todos los hijos
+    # Calcular altura máxima entre todos los hijos
     max_child_height = 0
     for child in root.children:
         # Recursivamente encontrar altura de cada subárbol
         child_height = tree_height(child)
         max_child_height = max(max_child_height, child_height)
     
-    # 🏆 Retornar 1 (nodo actual) + altura máxima de subárboles
+    # Retornar 1 (nodo actual) + altura máxima de subárboles
     return 1 + max_child_height
 
-# 🧪 Función de Pruebas Detallada
+# ------------------------- #
+# FUNCIONES DE VISUALIZACIÓN
+# ------------------------- #
+def print_path_to_deepest_node(root, current_path=None, max_path=None):
+    """
+    Encuentra y retorna el camino más largo desde la raíz hasta una hoja.
+    
+    Parámetros:
+    -----------
+    root : GenericTreeNode
+        Nodo raíz del árbol o subárbol
+    current_path : list, opcional
+        Camino acumulado hasta el nodo actual
+    max_path : list, opcional
+        Camino más largo encontrado hasta ahora
+    
+    Retorna:
+    --------
+    list
+        Lista de valores que representan el camino más largo
+    """
+    if root is None:
+        return []
+    
+    # Inicializamos las listas si es la primera llamada
+    if current_path is None:
+        current_path = []
+    if max_path is None:
+        max_path = []
+    
+    # Agregamos el nodo actual al camino
+    current_path = current_path + [root.value]
+    
+    # Si es una hoja, comprobamos si es el camino más largo
+    if not root.children:
+        if len(current_path) > len(max_path):
+            return current_path
+        else:
+            return max_path
+    
+    # Recursivamente buscamos el camino más largo entre todos los hijos
+    for child in root.children:
+        max_path = print_path_to_deepest_node(child, current_path, max_path)
+    
+    return max_path
+
+# ------------------------- #
+# BATERÍA DE PRUEBAS
+# ------------------------- #
 def test_tree_height():
     """
     Batería de pruebas para verificar la función tree_height.
     Cubre diversos escenarios de estructura de árbol.
     """
-    # 📊 Casos de prueba
+    # Casos de prueba con diferentes configuraciones de árboles
+    test_cases = [
+        {
+            'name': 'Árbol Vacío',
+            'tree': None,
+            'expected': 0,
+            'description': 'Un árbol sin nodos (None)'
+        },
+        {
+            'name': 'Árbol de Un Nodo',
+            'tree': GenericTreeNode('Raíz'),
+            'expected': 1,
+            'description': 'Un solo nodo sin hijos'
+        },
+        {
+            'name': 'Árbol Lineal',
+            'tree': _create_linear_tree(),
+            'expected': 4,
+            'description': 'Árbol donde cada nodo tiene exactamente un hijo'
+        },
+        {
+            'name': 'Árbol Balanceado',
+            'tree': _create_balanced_tree(),
+            'expected': 3,
+            'description': 'Árbol donde los nodos tienen múltiples hijos a la misma profundidad'
+        },
+        {
+            'name': 'Árbol No Balanceado',
+            'tree': _create_unbalanced_tree(),
+            'expected': 6,
+            'description': 'Árbol con ramas de diferentes longitudes'
+        }
+    ]
     
-    # 🌱 Caso 1: Árbol Vacío
-    print("🌳 Prueba 1: Árbol Vacío")
-    empty_tree = None
-    print(f"   Altura: {tree_height(empty_tree)}")
-    print("   Esperado: 0\n")
+    # Contadores para el resumen final
+    tests_totales = len(test_cases)
+    tests_pasados = 0
     
-    # 🌿 Caso 2: Árbol de Un Solo Nodo
-    print("🌳 Prueba 2: Árbol de Un Nodo")
-    single_node = GenericTreeNode('Raíz')
-    print("   Estructura:")
-    print(single_node)
-    print(f"   Altura: {tree_height(single_node)}")
-    print("   Esperado: 1\n")
+    # Encabezado de la tabla de resultados
+    print("\n" + "=" * 80)
+    print(f"{'🌳 PRUEBAS DE CÁLCULO DE ALTURA EN ÁRBOLES GENÉRICOS':^80}")
+    print("=" * 80)
     
-    # 🌲 Caso 3: Árbol Lineal
-    print("🌳 Prueba 3: Árbol Lineal")
+    # Ejecutar cada caso de prueba
+    for i, caso in enumerate(test_cases, 1):
+        # Calcular altura
+        altura = tree_height(caso['tree'])
+        es_correcto = altura == caso['expected']
+        
+        if es_correcto:
+            tests_pasados += 1
+        
+        # Separador entre pruebas
+        print(f"\n{'-' * 80}")
+        
+        # Información de la prueba
+        print(f"🧩 PRUEBA {i}: {caso['name']}")
+        print(f"{'-' * 80}")
+        
+        # Descripción del caso
+        print(f"📝 Descripción: {caso['description']}")
+        
+        # Mostrar altura calculada y esperada
+        print(f"🧮 Altura calculada: {altura}")
+        print(f"🎯 Altura esperada:  {caso['expected']}")
+        
+        # Indicador de éxito o fracaso
+        estado = "✅ CORRECTO" if es_correcto else "❌ INCORRECTO"
+        print(f"\n{estado:^80}")
+        
+        # Mostrar estructura del árbol si no es vacío
+        if caso['tree'] is not None:
+            print(f"\n📊 Estructura del árbol:")
+            print(f"{'-' * 40}")
+            print(caso['tree'].to_ascii_tree())
+            
+            # Mostrar camino más largo
+            longest_path = print_path_to_deepest_node(caso['tree'])
+            print(f"\n🛤️  Camino más largo: {' -> '.join(map(str, longest_path))}")
+            print(f"📏 Longitud del camino: {len(longest_path)} nodos")
+    
+    # Resumen final
+    print("\n" + "=" * 80)
+    print(f"{'RESUMEN DE RESULTADOS':^80}")
+    print("=" * 80)
+    print(f"Total de pruebas:     {tests_totales}")
+    print(f"Pruebas correctas:    {tests_pasados}")
+    print(f"Porcentaje de éxito:  {(tests_pasados/tests_totales) * 100:.2f}%")
+    print("=" * 80 + "\n")
+
+# ------------------------- #
+# ÁRBOLES DE PRUEBA
+# ------------------------- #
+def _create_linear_tree():
+    """Crea un árbol lineal para pruebas."""
     linear_tree = GenericTreeNode('A')
     b = GenericTreeNode('B')
     c = GenericTreeNode('C')
@@ -144,13 +298,10 @@ def test_tree_height():
     b.add_child(c)
     c.add_child(d)
     
-    print("   Estructura:")
-    print(linear_tree)
-    print(f"   Altura: {tree_height(linear_tree)}")
-    print("   Esperado: 4\n")
-    
-    # 🌳 Caso 4: Árbol Balanceado
-    print("🌳 Prueba 4: Árbol Balanceado")
+    return linear_tree
+
+def _create_balanced_tree():
+    """Crea un árbol balanceado para pruebas."""
     balanced_tree = GenericTreeNode('Raíz')
     b = GenericTreeNode('B')
     c = GenericTreeNode('C')
@@ -168,62 +319,104 @@ def test_tree_height():
     
     b.add_child(e)
     b.add_child(f)
-    b.add_child(g)
+    c.add_child(g)
     
-    print("   Estructura:")
-    print(balanced_tree)
-    print(f"   Altura: {tree_height(balanced_tree)}")
-    print("   Esperado: 3\n")
-    
-    # 🌴 Caso 5: Árbol No Balanceado
-    print("🌳 Prueba 5: Árbol No Balanceado")
+    return balanced_tree
+
+def _create_unbalanced_tree():
+    """Crea un árbol no balanceado para pruebas."""
     unbalanced_tree = GenericTreeNode('Raíz')
     b = GenericTreeNode('B')
     c = GenericTreeNode('C')
     d = GenericTreeNode('D')
     e = GenericTreeNode('E')
     f = GenericTreeNode('F')
+    g = GenericTreeNode('G')
     
     unbalanced_tree.add_child(b)
-    b.add_child(c)
-    c.add_child(d)
+    unbalanced_tree.add_child(c)
+    
+    b.add_child(d)
+    
     d.add_child(e)
+    
     e.add_child(f)
     
-    print("   Estructura:")
-    print(unbalanced_tree)
-    print(f"   Altura: {tree_height(unbalanced_tree)}")
-    print("   Esperado: 5\n")
+    f.add_child(g)
+    
+    return unbalanced_tree
 
-# 🎓 Explicación Didáctica
+# ------------------------- #
+# EXPLICACIÓN DIDÁCTICA
+# ------------------------- #
 def explain_tree_height():
     """
     Explicación detallada del algoritmo de cálculo de altura de árbol.
     """
-    print("🧠 Explicación Detallada: Cálculo de Altura de Árbol\n")
+    print("\n" + "=" * 80)
+    print(f"{'🧠 EXPLICACIÓN DETALLADA: CÁLCULO DE ALTURA DE ÁRBOL':^80}")
+    print("=" * 80 + "\n")
     
     print("📝 Pasos del Algoritmo:")
     print("1. Si el árbol está vacío, la altura es 0")
-    print("2. Si el nodo no tiene hijos, la altura es 1")
+    print("2. Si el nodo no tiene hijos (es una hoja), la altura es 1")
     print("3. Para nodos con hijos:")
-    print("   a. Calcular la altura de cada subárbol hijo")
+    print("   a. Calcular recursivamente la altura de cada subárbol hijo")
     print("   b. Encontrar la altura máxima entre los subárboles")
     print("   c. Sumar 1 (por el nodo actual) a la altura máxima\n")
     
-    print("🔍 Ejemplo de Recursividad:")
-    print("Consideremos un árbol:")
-    print("       A")
-    print("     / | \\")
-    print("    B  C  D")
-    print("   /|\\    |")
-    print("  E F G   H\n")
+    print("🔍 Ejemplo Visual de Recursividad:")
     
-    print("Proceso de Cálculo de Altura:")
-    print("1. Nodos E, F, G, H: altura 1 (no tienen hijos)")
-    print("2. Nodo B: 1 + max(altura de E, F, G) = 2")
-    print("3. Nodos C, D: altura 1")
-    print("4. Nodo raíz A: 1 + max(altura de B, C, D) = 3\n")
+    # Crear un árbol de ejemplo para la explicación
+    root = GenericTreeNode('A')
+    b = GenericTreeNode('B')
+    c = GenericTreeNode('C')
+    d = GenericTreeNode('D')
+    e = GenericTreeNode('E')
+    f = GenericTreeNode('F')
+    g = GenericTreeNode('G')
+    h = GenericTreeNode('H')
+    
+    root.add_child(b)
+    root.add_child(c)
+    root.add_child(d)
+    
+    b.add_child(e)
+    b.add_child(f)
+    b.add_child(g)
+    
+    d.add_child(h)
+    
+    # Mostrar el árbol
+    print("Estructura del árbol de ejemplo:")
+    print(root.to_ascii_tree())
+    
+    print("\nProceso de Cálculo de Altura:")
+    print("1. Nodos E, F, G, H (hojas): altura = 1")
+    print("2. Nodo B: altura = 1 + max(altura de E, F, G) = 1 + 1 = 2")
+    print("3. Nodo C (no tiene hijos): altura = 1")
+    print("4. Nodo D: altura = 1 + altura de H = 1 + 1 = 2")
+    print("5. Nodo raíz A: altura = 1 + max(altura de B, C, D) = 1 + max(2, 1, 2) = 1 + 2 = 3")
+    
+    print("\n🎓 Conceptos Clave:")
+    print("• La altura de un árbol es la longitud del camino más largo desde la raíz hasta una hoja")
+    print("• El camino se mide contando el número de nodos (no de aristas)")
+    print("• La recursividad simplifica enormemente el algoritmo")
+    print("• La función max() es esencial para encontrar la rama más profunda\n")
+    
+    print("🔄 Complejidad del Algoritmo:")
+    print("• Tiempo: O(n) donde n es el número de nodos (visitamos cada nodo exactamente una vez)")
+    print("• Espacio: O(h) donde h es la altura del árbol (máxima profundidad de recursión)")
+    
+    print("\n💡 Aplicaciones Prácticas:")
+    print("• Análisis de rendimiento de estructuras de datos en árbol")
+    print("• Optimización de consultas en bases de datos jerárquicas")
+    print("• Cálculo de profundidad en árboles de decisión")
+    print("• Análisis de estructuras jerárquicas como organigramas o taxonomías")
+    
+    print("\n" + "=" * 80)
 
-# Descomentar para ejecutar
-test_tree_height()
-explain_tree_height()
+# Ejecutar las pruebas y la explicación cuando se ejecuta el script directamente
+if __name__ == "__main__":
+    test_tree_height()
+    explain_tree_height()
