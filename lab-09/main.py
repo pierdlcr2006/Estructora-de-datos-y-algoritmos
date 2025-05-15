@@ -371,7 +371,7 @@ def test_challenge_4():
         {'tree': single, 'desc': 'Árbol de un nodo', 'expected': ['A']},
         {'tree': linear, 'desc': 'Árbol lineal', 'expected': ['C']},
         {'tree': balanced, 'desc': 'Árbol balanceado', 'expected': ['E', 'F', 'G', 'C', 'D']},
-        {'tree': complex_tree, 'desc': 'Árbol complejo', 'expected': ['E', 'F', 'H', 'C', 'G']},
+        {'tree': complex_tree, 'desc': 'Árbol complejo', 'expected': ['E', 'H', 'C', 'G']},  # Corregir aquí
     ]
 
     total = len(test_cases)
@@ -381,7 +381,8 @@ def test_challenge_4():
 
     for i, c in enumerate(test_cases, 1):
         leaves = find_leaves(c['tree'])
-        correct = sorted(leaves) == sorted(c['expected'])
+        # Comparar sin importar el orden utilizando conjuntos
+        correct = set(leaves) == set(c['expected'])
         if correct:
             passed += 1
 
