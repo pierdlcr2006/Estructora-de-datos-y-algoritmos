@@ -1,56 +1,88 @@
-# 🔧 Clase base y utilidades de árbol
-class TreeNode:
-    def __init__(self, val):
-        self.val = val        # Almacena el valor del nodo
-        self.left = None      # Referencia al hijo izquierdo (inicialmente None)
-        self.right = None     # Referencia al hijo derecho (inicialmente None)
+# Definimos la clase del nodo del árbol
+class Node:
+    def __init__(self, value):
+        self.value = value  # Valor del nodo
+        self.left = None    # Hijo izquierdo
+        self.right = None   # Hijo derecho
 
-# Inserta respetando reglas de BST
-def insert_bst(root, val):
-    if root is None:
-        return TreeNode(val)   # Si el árbol está vacío, crea un nuevo nodo raíz
-    if val < root.val:
-        root.left = insert_bst(root.left, val)  # Si el valor es menor, inserta en subárbol izquierdo
-    else:
-        root.right = insert_bst(root.right, val)  # Si el valor es mayor o igual, inserta en subárbol derecho
-    return root  # Devuelve la raíz actualizada
+# Clase del Árbol Binario de Búsqueda
+class BinarySearchTree:
+    def __init__(self):
+        self.root = None  # Raíz del árbol
 
-# Crea un BST válido desde lista
-def build_tree(values):
-    root = None  # Comienza con un árbol vacío
-    for val in values:
-        root = insert_bst(root, val)  # Inserta cada valor manteniendo las propiedades del BST
-    return root  # Devuelve la raíz del árbol construido
+    # Inserta valores en el árbol manteniendo la propiedad BST
+    def insert(self, value):
+        if self.root is None:
+            self.root = Node(value)  # Si el árbol está vacío, el nuevo nodo es la raíz
+        else:
+            self._insert_recursive(self.root, value)
 
-# 🚫 Crea árbol inválido - violación en izquierda
-def build_invalid_tree1():
-    root = TreeNode(5)  # Crea nodo raíz con valor 5
-    root.left = TreeNode(6)  # Violación: 6 > 5 (en BST válido, hijo izquierdo debe ser menor que padre)
-    root.right = TreeNode(7)  # Hijo derecho válido (7 > 5)
-    return root  # Retorna árbol inválido para pruebas
+    # Inserción recursiva de nodos
+    def _insert_recursive(self, node, value):
+        if value < node.value:
+            if node.left is None:
+                node.left = Node(value)  # Insertar a la izquierda
+            else:
+                self._insert_recursive(node.left, value)
+        else:
+            if node.right is None:
+                node.right = Node(value)  # Insertar a la derecha
+            else:
+                self._insert_recursive(node.right, value)
 
-# 🚫 Crea árbol inválido - violación en derecha
-def build_invalid_tree2():
-    root = TreeNode(5)  # Crea nodo raíz con valor 5
-    root.left = TreeNode(3)  # Hijo izquierdo válido (3 < 5)
-    root.right = TreeNode(4)  # Violación: 4 < 5 (en BST válido, hijo derecho debe ser mayor que padre)
-    return root  # Retorna árbol inválido para pruebas
+    # Construye el árbol desde una lista de valores
+    def build_from_list(self, values):
+        for value in values:
+            self.insert(value)
 
-# ✅ Función principal: validar BST usando min/max
-def is_valid_bst(root):
-    def validate(node, min_val, max_val):
-        if not node:
-            return True  # Un árbol vacío es un BST válido
-        if not (min_val < node.val < max_val):
-            return False  # Si el valor del nodo está fuera del rango permitido, no es un BST válido
-        return (validate(node.left, min_val, node.val) and  # Verifica subárbol izquierdo con límite superior actualizado
-                validate(node.right, node.val, max_val))    # Verifica subárbol derecho con límite inferior actualizado
-    
-    return validate(root, float('-inf'), float('inf'))  # Inicia validación con rango infinito
+    # ✅ Verifica si el árbol es un BST válido
+    def is_valid_bst(self):
+        """🧼 Verifica que el árbol cumpla con la propiedad de BST"""
 
-# ✅ Test cases
-print(is_valid_bst(build_tree([5, 3, 7, 2, 4, 6, 8])) == True)   # ✅ Valid BST - árbol construido correctamente
-print(is_valid_bst(build_invalid_tree1()) == False)             # ❌ Left violation - valor izquierdo mayor que padre
-print(is_valid_bst(build_invalid_tree2()) == False)             # ❌ Right violation - valor derecho menor que padre
-print(is_valid_bst(build_tree([42])) == True)                   # 🌱 Single node - un solo nodo siempre es BST válido
-print(is_valid_bst(None) == True)                               # 📭 Empty tree - árbol vacío también es BST válido
+        def validate(node, min_val, max_val):
+            # Si llegamos a un nodo nulo, es válido
+            if node is None:
+                return True
+
+            # El valor del nodo debe estar dentro del rango permitido
+            if not (min_val < node.value < max_val):
+                return False
+
+            # Validar el subárbol izquierdo: todos los valores deben ser < nodo actual
+            left_valid = validate(node.left, min_val, node.value)
+
+            # Validar el subárbol derecho: todos los valores deben ser > nodo actual
+            right_valid = validate(node.right, node.value, max_val)
+
+            return left_valid and right_valid  # Ambos subárboles deben ser válidos
+
+        # Iniciamos la validación desde la raíz con los límites máximos posibles
+        return validate(self.root, float('-inf'), float('inf'))
+
+# 🧪 Casos de prueba para validar árboles BST
+def test_is_valid_bst():
+    bst1 = BinarySearchTree()
+    bst1.build_from_list([5, 3, 7, 2, 4, 6, 8])
+    print("🧪 Test 1:", bst1.is_valid_bst() == True)  # ✅ Árbol válido
+
+    bst2 = BinarySearchTree()
+    bst2.root = Node(5)
+    bst2.root.left = Node(6)  # ❌ Incorrecto: 6 está a la izquierda de 5
+    bst2.root.right = Node(7)
+    print("🧪 Test 2:", bst2.is_valid_bst() == False)  # ❌ Violación izquierda
+
+    bst3 = BinarySearchTree()
+    bst3.root = Node(5)
+    bst3.root.left = Node(3)
+    bst3.root.right = Node(4)  # ❌ Incorrecto: 4 está a la derecha de 5
+    print("🧪 Test 3:", bst3.is_valid_bst() == False)  # ❌ Violación derecha
+
+    bst4 = BinarySearchTree()
+    bst4.build_from_list([42])
+    print("🧪 Test 4:", bst4.is_valid_bst() == True)  # 🌱 Nodo único válido
+
+    bst5 = BinarySearchTree()
+    print("🧪 Test 5:", bst5.is_valid_bst() == True)  # 📭 Árbol vacío válido
+
+# 🚀 Ejecutar todos los tests
+test_is_valid_bst()
