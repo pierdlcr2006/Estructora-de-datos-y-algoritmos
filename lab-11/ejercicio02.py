@@ -1,122 +1,81 @@
+# Clase auxiliar para los nodos del árbol binario de búsqueda
 class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
+    def __init__(self, value):
+        self.value = value  # Valor del nodo
+        self.left = None    # Subárbol izquierdo
+        self.right = None   # Subárbol derecho
 
+# Clase del Árbol Binario de Búsqueda (BST)
 class BinarySearchTree:
     def __init__(self):
-        self.root = None
-    
-    def insert(self, val):
-        """Insert a value into the BST"""
-        if not self.root:
-            self.root = TreeNode(val)
+        self.root = None  # Raíz del árbol
+
+    # Método para insertar un nuevo valor
+    def insert(self, value):
+        if self.root is None:
+            self.root = TreeNode(value)  # Si está vacío, el valor se convierte en raíz
         else:
-            self._insert_recursive(self.root, val)
-    
-    def _insert_recursive(self, node, val):
-        if val < node.val:
+            self._insert_recursive(self.root, value)  # Insertamos recursivamente
+
+    # Método auxiliar para insertar de forma recursiva
+    def _insert_recursive(self, node, value):
+        if value < node.value:
             if node.left is None:
-                node.left = TreeNode(val)
+                node.left = TreeNode(value)  # Insertar como hijo izquierdo
             else:
-                self._insert_recursive(node.left, val)
-        elif val > node.val:
+                self._insert_recursive(node.left, value)
+        else:
             if node.right is None:
-                node.right = TreeNode(val)
+                node.right = TreeNode(value)  # Insertar como hijo derecho
             else:
-                self._insert_recursive(node.right, val)
-    
+                self._insert_recursive(node.right, value)
+
+    # Construir el árbol a partir de una lista de valores
     def build_from_list(self, values):
-        """Build BST from a list of values"""
-        for val in values:
-            self.insert(val)
-    
-    def range_query(self, min_val, max_val):
-        """🎯 Find all values in BST within given range"""
-        result = []
-        
-        def inorder_range(node):
-            if not node:
-                return
-            
-            # Only traverse left subtree if current value > min_val
-            if node.val > min_val:
-                inorder_range(node.left)
-            
-            # Add current value if it lies within the range
-            if min_val <= node.val <= max_val:
-                result.append(node.val)
-            
-            # Only traverse right subtree if current value < max_val
-            if node.val < max_val:
-                inorder_range(node.right)
-        
-        inorder_range(self.root)
-        return result
-    
+        for value in values:
+            self.insert(value)
+
+    # ✅ Método para encontrar el Ancestro Común Más Bajo (Lowest Common Ancestor)
     def find_lca(self, val1, val2):
-        """🧬 Find lowest common ancestor of two values in the BST"""
-        current = self.root
-        
-        while current:
-            # If both values are smaller than current → go left
-            if val1 < current.val and val2 < current.val:
-                current = current.left
-            # If both values are larger than current → go right
-            elif val1 > current.val and val2 > current.val:
-                current = current.right
-            # If they diverge or one equals current, current node is the LCA
+        """🧬 Encuentra el ancestro común más bajo entre dos valores en el BST"""
+        node = self.root  # Empezamos desde la raíz del árbol
+
+        while node:
+            # Si ambos valores son menores al nodo actual, buscamos en el subárbol izquierdo
+            if val1 < node.value and val2 < node.value:
+                node = node.left
+
+            # Si ambos valores son mayores al nodo actual, buscamos en el subárbol derecho
+            elif val1 > node.value and val2 > node.value:
+                node = node.right
+
+            # Si los valores se separan (uno menor y otro mayor), hemos encontrado el ancestro común
             else:
-                return current.val
-        
-        return None  # This shouldn't happen if both values exist in the BST
+                return node.value  # Devolvemos el valor del ancestro común
 
-# 🧪 Test cases
-def test_range_query():
-    bst1 = BinarySearchTree()
-    bst1.build_from_list([7, 3, 11, 1, 5, 9, 13])
-    print("🧪 Test 1:", bst1.range_query(5, 10) == [5, 7, 9])  # ✅
-    
-    bst2 = BinarySearchTree()
-    bst2.build_from_list([6, 4, 8, 2])
-    print("🧪 Test 2:", bst2.range_query(1, 10) == [2, 4, 6, 8])  # 🌐
-    
-    bst3 = BinarySearchTree()
-    bst3.build_from_list([20, 10, 30])
-    print("🧪 Test 3:", bst3.range_query(1, 5) == [])  # 📭
-    
-    bst4 = BinarySearchTree()
-    bst4.build_from_list([15])
-    print("🧪 Test 4:", bst4.range_query(10, 20) == [15])  # 🌱
-    
-    bst5 = BinarySearchTree()
-    bst5.build_from_list([15, 10, 20, 5, 25])
-    print("🧪 Test 5:", bst5.range_query(10, 20) == [10, 15, 20])  # 🔗
+        return None  # Si no se encuentra (caso raro o datos inválidos)
 
+# 🧪 Casos de prueba para verificar el método find_lca
 def test_find_lca():
     bst1 = BinarySearchTree()
     bst1.build_from_list([6, 2, 8, 0, 4, 7, 9, 3, 5])
-    print("🧪 Test 1:", bst1.find_lca(2, 8) == 6)  # 🌲 Root is LCA
-    
+    print("🧪 Test 1:", bst1.find_lca(2, 8) == 6)  # 🌲 Raíz es el LCA
+
     bst2 = BinarySearchTree()
     bst2.build_from_list([6, 2, 8, 0, 4, 7, 9, 3, 5])
-    print("🧪 Test 2:", bst2.find_lca(0, 4) == 2)  # 📚 Subtree LCA
-    
+    print("🧪 Test 2:", bst2.find_lca(0, 4) == 2)  # 📚 LCA dentro de subárbol
+
     bst3 = BinarySearchTree()
     bst3.build_from_list([6, 2, 8, 0, 4, 7, 9, 3, 5])
-    print("🧪 Test 3:", bst3.find_lca(2, 3) == 2)  # 🔗 Ancestor node
-    
+    print("🧪 Test 3:", bst3.find_lca(2, 3) == 2)  # 🔗 Uno es ancestro del otro
+
     bst4 = BinarySearchTree()
     bst4.build_from_list([5, 3, 7])
-    print("🧪 Test 4:", bst4.find_lca(5, 5) == 5)  # 🎯 Same node
-    
+    print("🧪 Test 4:", bst4.find_lca(5, 5) == 5)  # 🎯 Mismo nodo
+
     bst5 = BinarySearchTree()
     bst5.build_from_list([4, 2, 6, 1, 3, 5, 7])
-    print("🧪 Test 5:", bst5.find_lca(1, 3) == 2)  # 🌿 Leaf node LCA
+    print("🧪 Test 5:", bst5.find_lca(1, 3) == 2)  # 🌿 Ambos están bajo el mismo subárbol
 
-# 🚀 Run all tests
-print("=== Range Query Tests ===")
-test_range_query()
-print("\n=== LCA Tests ===")
+# 🚀 Ejecutar los tests
 test_find_lca()
