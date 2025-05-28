@@ -1,59 +1,81 @@
-# Definición de la clase TreeNode que representa un nodo en el árbol binario de búsqueda (BST)
 class TreeNode:
-    def __init__(self, val):
-        self.val = val       # Valor almacenado en el nodo
-        self.left = None     # Referencia al hijo izquierdo (inicialmente None)
-        self.right = None    # Referencia al hijo derecho (inicialmente None)
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
-# Función recursiva para insertar un valor en el BST manteniendo sus propiedades
-def insert_bst(root, val):
-    if root is None:
-        return TreeNode(val)  # Si el árbol está vacío, crea un nuevo nodo como raíz
-    if val < root.val:
-        # Si el valor es menor que el nodo actual, inserta en el subárbol izquierdo
-        root.left = insert_bst(root.left, val)
-    else:
-        # Si el valor es mayor o igual, inserta en el subárbol derecho
-        root.right = insert_bst(root.right, val)
-    return root  # Devuelve la raíz del árbol modificado
-
-# Función para construir un árbol BST completo a partir de una lista de valores
-def build_bst(values):
-    root = None  # Comienza con un árbol vacío
-    for val in values:
-        # Inserta cada valor de la lista en el BST
-        root = insert_bst(root, val)
-    return root  # Devuelve la raíz del BST construido
-
-# Función principal que encuentra todos los valores en un rango específico [min_val, max_val] dentro del BST
-def range_query(root, min_val, max_val):
-    result = []  # Lista para almacenar los valores encontrados en el rango
-
-    # Función interna para realizar un recorrido en profundidad (DFS) optimizado
-    def dfs(node):
-        if not node:
-            return  # Si el nodo es None, termina esta rama de recursión
+class BinarySearchTree:
+    def __init__(self):
+        self.root = None
+    
+    def insert(self, val):
+        """Insert a value into the BST"""
+        if not self.root:
+            self.root = TreeNode(val)
+        else:
+            self._insert_recursive(self.root, val)
+    
+    def _insert_recursive(self, node, val):
+        if val < node.val:
+            if node.left is None:
+                node.left = TreeNode(val)
+            else:
+                self._insert_recursive(node.left, val)
+        elif val > node.val:
+            if node.right is None:
+                node.right = TreeNode(val)
+            else:
+                self._insert_recursive(node.right, val)
+    
+    def build_from_list(self, values):
+        """Build BST from a list of values"""
+        for val in values:
+            self.insert(val)
+    
+    def range_query(self, min_val, max_val):
+        """🎯 Find all values in BST within given range"""
+        result = []
         
-        if node.val > min_val:
-            # Solo explora el subárbol izquierdo si puede contener valores ≥ min_val
-            dfs(node.left)
+        def inorder_range(node):
+            if not node:
+                return
             
-        if min_val <= node.val <= max_val:
-            # Si el valor actual está en el rango, lo agrega al resultado
-            result.append(node.val)
+            # Only traverse left subtree if current value > min_val
+            if node.val > min_val:
+                inorder_range(node.left)
             
-        if node.val < max_val:
-            # Solo explora el subárbol derecho si puede contener valores ≤ max_val
-            dfs(node.right)
+            # Add current value if it lies within the range
+            if min_val <= node.val <= max_val:
+                result.append(node.val)
+            
+            # Only traverse right subtree if current value < max_val
+            if node.val < max_val:
+                inorder_range(node.right)
+        
+        inorder_range(self.root)
+        return result
 
-    # Inicia el recorrido DFS desde la raíz
-    dfs(root)
-    # Devuelve la lista de valores dentro del rango especificado
-    return result
+# 🧪 Test cases
+def test_range_query():
+    bst1 = BinarySearchTree()
+    bst1.build_from_list([7, 3, 11, 1, 5, 9, 13])
+    print("🧪 Test 1:", bst1.range_query(5, 10) == [5, 7, 9])  # ✅
+    
+    bst2 = BinarySearchTree()
+    bst2.build_from_list([6, 4, 8, 2])
+    print("🧪 Test 2:", bst2.range_query(1, 10) == [2, 4, 6, 8])  # 🌐
+    
+    bst3 = BinarySearchTree()
+    bst3.build_from_list([20, 10, 30])
+    print("🧪 Test 3:", bst3.range_query(1, 5) == [])  # 📭
+    
+    bst4 = BinarySearchTree()
+    bst4.build_from_list([15])
+    print("🧪 Test 4:", bst4.range_query(10, 20) == [15])  # 🌱
+    
+    bst5 = BinarySearchTree()
+    bst5.build_from_list([15, 10, 20, 5, 25])
+    print("🧪 Test 5:", bst5.range_query(10, 20) == [10, 15, 20])  # 🔗
 
-# Casos de prueba con diferentes escenarios
-print(range_query(build_bst([7, 3, 11, 1, 5, 9, 13]), 5, 10) == [5, 7, 9])          # Prueba un rango normal
-print(range_query(build_bst([6, 4, 8, 2]), 1, 10) == [2, 4, 6, 8])                  # Prueba un rango que cubre todos los nodos
-print(range_query(build_bst([20, 10, 30]), 1, 5) == [])                             # Prueba un rango sin resultados
-print(range_query(build_bst([15]), 10, 20) == [15])                                # Prueba con un solo nodo
-print(range_query(build_bst([15, 10, 20, 5, 25]), 10, 20) == [10, 15, 20])          # Prueba incluyendo los límites del rango
+# 🚀 Run all tests
+test_range_query()
