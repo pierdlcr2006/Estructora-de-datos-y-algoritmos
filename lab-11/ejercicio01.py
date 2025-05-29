@@ -30,6 +30,12 @@ class BinarySearchTree:
         for value in values:
             self.insert(value)
 
+#     7
+#    / \
+#   3   11
+#  / \  / \
+# 1   5 9  13
+#result: [5, 7, 9]
     def range_query(self, min_val, max_val):
         result = []
 
