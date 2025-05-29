@@ -30,9 +30,6 @@ class BinarySearchTree:
         for value in values:
             self.insert(value)
             
-# bst1 = BinarySearchTree()
-# bst1.build_from_list([7, 3, 11, 1, 5, 9, 13])
-# print("🧪 Test 1:", bst1.range_query(5, 10) == [5, 7, 9])
 #     7
 #    / \
 #   3   11
